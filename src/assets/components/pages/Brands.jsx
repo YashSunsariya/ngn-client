@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Button, Stack, Container, Grid, Card, Divider, Avatar,
 } from "@mui/material";
@@ -13,6 +14,7 @@ import LoadingSpinner from "../ui/LoadingSpinner";
 
 const Brands = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { items: brands, loading } = useSelector((state) => state.brands);
   const [activeBrandId, setActiveBrandId] = useState(null);
 
@@ -104,7 +106,7 @@ const Brands = () => {
 
                     <Divider sx={{ my: 3 }} />
 
-                    <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />} component="a" href="/products" sx={{ ...DS.button.primary, px: 3.5, py: 1.1 }}>
+                    <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />} onClick={() => navigate("/products")} sx={{ ...DS.button.primary, px: 3.5, py: 1.1 }}>
                       View Hardware Inventory
                     </Button>
                   </Grid>

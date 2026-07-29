@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Container, Grid, Card, Divider, Stack, Button, Avatar,
 } from "@mui/material";
@@ -60,6 +61,7 @@ const aboutSections = [
 ];
 
 const About = () => {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("vision");
   const current = aboutSections.find((s) => s.id === activeSection) || aboutSections[0];
 
@@ -121,7 +123,7 @@ const About = () => {
                     ))}
                   </Stack>
 
-                  <Button variant="contained" disableElevation sx={{ ...DS.button.primary, px: 4, py: 1.2 }}>
+                  <Button variant="contained" disableElevation onClick={() => navigate("/projects")} sx={{ ...DS.button.primary, px: 4, py: 1.2 }}>
                     Download Project Portfolio
                   </Button>
                 </Grid>

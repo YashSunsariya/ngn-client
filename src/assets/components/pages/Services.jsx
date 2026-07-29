@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Button, Stack, Container, Grid, Card, Divider, List, ListItem, ListItemIcon, ListItemText,
 } from "@mui/material";
@@ -72,6 +73,7 @@ const servicesData = [
 ];
 
 const Services = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("consultation");
   const selectedService = servicesData.find((s) => s.id === activeTab) || servicesData[0];
 
@@ -133,7 +135,7 @@ const Services = () => {
                     ))}
                   </List>
 
-                  <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />} sx={{ ...DS.button.primary, px: 4, py: 1.2 }}>
+                  <Button variant="contained" disableElevation endIcon={<ArrowForwardRoundedIcon />} onClick={() => navigate("/contact")} sx={{ ...DS.button.primary, px: 4, py: 1.2 }}>
                     Book Service Appointment
                   </Button>
                 </Grid>

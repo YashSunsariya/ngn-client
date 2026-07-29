@@ -2,6 +2,7 @@ import React from "react";
 import {
   Box, Container, Grid, Typography, Link, Stack, Divider, IconButton,
 } from "@mui/material";
+import { Link as RouterLink } from "react-router-dom";
 import SolarPowerIcon from "@mui/icons-material/SolarPower";
 import PhoneIcon from "@mui/icons-material/Phone";
 import EmailIcon from "@mui/icons-material/Email";
@@ -12,29 +13,29 @@ import TwitterIcon from "@mui/icons-material/Twitter";
 import DS from "../../../theme/designSystem";
 
 const socialIcons = [
-  { icon: <FacebookIcon sx={{ fontSize: 18 }} />, label: "Facebook", href: "#" },
-  { icon: <LinkedInIcon sx={{ fontSize: 18 }} />, label: "LinkedIn", href: "#" },
-  { icon: <TwitterIcon sx={{ fontSize: 18 }} />, label: "Twitter", href: "#" },
+  { icon: <FacebookIcon sx={{ fontSize: 18 }} />, label: "Facebook", to: "https://facebook.com/ngnenterprises" },
+  { icon: <LinkedInIcon sx={{ fontSize: 18 }} />, label: "LinkedIn", to: "https://linkedin.com/company/ngnenterprises" },
+  { icon: <TwitterIcon sx={{ fontSize: 18 }} />, label: "Twitter", to: "https://twitter.com/ngnenterprises" },
 ];
 
 const footerLinks = {
   "Quick Links": [
-    { label: "Home", href: "/" },
-    { label: "About Us", href: "/about" },
-    { label: "Brands", href: "/brands" },
-    { label: "Blog & Articles", href: "/blog" },
-    { label: "Contact Us", href: "/contact" },
+    { label: "Home", to: "/" },
+    { label: "About Us", to: "/about" },
+    { label: "Brands", to: "/brands" },
+    { label: "Blog & Articles", to: "/blog" },
+    { label: "Contact Us", to: "/contact" },
   ],
   "Our Products": [
-    { label: "Solar Panels", href: "/products/panels" },
-    { label: "Solar Inverters", href: "/products/inverters" },
-    { label: "Lithium Batteries", href: "/products/batteries" },
-    { label: "Automation Modules", href: "/products/automation" },
+    { label: "Solar Panels", to: "/products" },
+    { label: "Solar Inverters", to: "/products" },
+    { label: "Lithium Batteries", to: "/products" },
+    { label: "Automation Modules", to: "/products" },
   ],
   "Solutions": [
-    { label: "Residential Solar", href: "/solutions/residential" },
-    { label: "Commercial Systems", href: "/solutions/commercial" },
-    { label: "Industrial & Govt.", href: "/solutions/industrial" },
+    { label: "Residential Solar", to: "/services" },
+    { label: "Commercial Systems", to: "/services" },
+    { label: "Industrial & Govt.", to: "/services" },
   ],
 };
 
@@ -89,7 +90,8 @@ export default function Footer() {
                 {socialIcons.map((item, idx) => (
                   <IconButton
                     key={idx}
-                    href={item.href}
+                    component={RouterLink}
+                    to={item.to}
                     aria-label={item.label}
                     sx={{
                       color: "#FFFFFF",
@@ -115,7 +117,8 @@ export default function Footer() {
                 {links.map((link) => (
                   <Box component="li" key={link.label}>
                     <Link
-                      href={link.href}
+                      component={RouterLink}
+                      to={link.to}
                       underline="none"
                       sx={{
                         ...DS.typography.body,
@@ -171,10 +174,10 @@ export default function Footer() {
             © {currentYear} NGN Enterprises & Automation. All rights reserved.
           </Typography>
           <Stack direction="row" spacing={3}>
-            <Link href="/privacy" underline="none" sx={{ ...DS.typography.caption, fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", "&:hover": { color: "#FFF" } }}>
+            <Link component={RouterLink} to="/about" underline="none" sx={{ ...DS.typography.caption, fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", "&:hover": { color: "#FFF" } }}>
               Privacy Policy
             </Link>
-            <Link href="/terms" underline="none" sx={{ ...DS.typography.caption, fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", "&:hover": { color: "#FFF" } }}>
+            <Link component={RouterLink} to="/about" underline="none" sx={{ ...DS.typography.caption, fontSize: "0.78rem", color: "rgba(255,255,255,0.6)", "&:hover": { color: "#FFF" } }}>
               Terms of Service
             </Link>
           </Stack>

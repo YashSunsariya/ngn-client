@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Button, Stack, Container, Grid, Card, Chip,
 } from "@mui/material";
@@ -49,6 +50,7 @@ const portfolioData = [
 ];
 
 const Projects = () => {
+  const navigate = useNavigate();
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filteredProjects = activeCategory === "all"
@@ -120,7 +122,7 @@ const Projects = () => {
                         {project.description}
                       </Typography>
 
-                      <Button variant="outlined" fullWidth endIcon={<ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />} sx={{
+                      <Button variant="outlined" fullWidth endIcon={<ArrowOutwardRoundedIcon sx={{ fontSize: 14 }} />} onClick={() => navigate("/contact")} sx={{
                         ...DS.button.outlined,
                         color: DS.colors.primary,
                         borderColor: DS.colors.border,

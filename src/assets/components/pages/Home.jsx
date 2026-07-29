@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography, Button, Stack, Container, Chip } from "@mui/material";
 import ArrowOutwardRoundedIcon from "@mui/icons-material/ArrowOutwardRounded";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
@@ -71,6 +72,7 @@ const features = [
 ];
 
 const Home = () => {
+  const navigate = useNavigate();
   return (
     <Box sx={{ width: "100%", overflow: "hidden", bgcolor: DS.colors.bg }}>
       {/* HERO */}
@@ -89,10 +91,10 @@ const Home = () => {
             </Typography>
 
             <Stack direction="row" spacing={2} sx={{ mt: 4 }} flexWrap="wrap" useFlexGap>
-              <Button variant="contained" disableElevation endIcon={<ArrowOutwardRoundedIcon sx={{ fontSize: 18 }} />} sx={{ ...DS.button.primary, px: 3.5, py: 1.25, "&:hover": { bgcolor: DS.colors.primaryHover, boxShadow: DS.shadows.primaryHover } }}>
+              <Button variant="contained" disableElevation endIcon={<ArrowOutwardRoundedIcon sx={{ fontSize: 18 }} />} onClick={() => navigate("/contact")} sx={{ ...DS.button.primary, px: 3.5, py: 1.25, "&:hover": { bgcolor: DS.colors.primaryHover, boxShadow: DS.shadows.primaryHover } }}>
                 Get a free quote
               </Button>
-              <Button variant="outlined" sx={{ ...DS.button.outlined, borderColor: "rgba(255,255,255,0.4)", color: "#fff", px: 3.5, py: 1.25, "&:hover": { borderColor: "#fff", bgcolor: "rgba(255,255,255,0.08)" } }}>
+              <Button variant="outlined" onClick={() => navigate("/products")} sx={{ ...DS.button.outlined, borderColor: "rgba(255,255,255,0.4)", color: "#fff", px: 3.5, py: 1.25, "&:hover": { borderColor: "#fff", bgcolor: "rgba(255,255,255,0.08)" } }}>
                 Explore products
               </Button>
             </Stack>
@@ -134,7 +136,7 @@ const Home = () => {
               <Chip label={p.tag} size="small" sx={{ alignSelf: "flex-start", bgcolor: DS.colors.amberLight, color: DS.colors.amberDark, fontWeight: 600, fontSize: "0.72rem", height: 24, borderRadius: DS.radii.sm, mb: 2, fontFamily: DS.fonts.body }} />
               <Typography sx={{ ...DS.typography.h5, fontFamily: DS.fonts.heading, fontSize: "1.05rem", mb: 1 }}>{p.title}</Typography>
               <Typography sx={{ ...DS.typography.body, color: DS.colors.body, lineHeight: 1.7, flexGrow: 1, mb: 3 }}>{p.copy}</Typography>
-              <Stack direction="row" spacing={1} alignItems="center" sx={{ cursor: "pointer", color: DS.colors.primary, transition: "gap 0.2s ease", width: "fit-content", "&:hover": { gap: 1.5 } }}>
+              <Stack direction="row" spacing={1} alignItems="center" onClick={() => navigate("/products")} sx={{ cursor: "pointer", color: DS.colors.primary, transition: "gap 0.2s ease", width: "fit-content", "&:hover": { gap: 1.5 } }}>
                 <Typography sx={{ fontWeight: 600, fontSize: "0.88rem" }}>Learn More</Typography>
                 <ArrowOutwardRoundedIcon sx={{ fontSize: 18 }} />
               </Stack>
@@ -153,7 +155,7 @@ const Home = () => {
                 Get a customized solar solution for your home or business. Save money on electricity bills with high-quality solar products and professional installation.
               </Typography>
             </Box>
-            <Button variant="contained" disableElevation endIcon={<ArrowOutwardRoundedIcon />} sx={{ bgcolor: "#fff", color: DS.colors.primary, textTransform: "none", fontWeight: 600, fontFamily: DS.fonts.body, fontSize: "0.92rem", px: 3.5, py: 1, minWidth: 180, height: 48, borderRadius: DS.radii.lg, boxShadow: DS.shadows.lg, transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", "&:hover": { bgcolor: DS.colors.bg, boxShadow: "0 12px 32px rgba(0,0,0,0.15)", transform: "translateY(-2px)" } }}>
+            <Button variant="contained" disableElevation endIcon={<ArrowOutwardRoundedIcon />} onClick={() => navigate("/contact")} sx={{ bgcolor: "#fff", color: DS.colors.primary, textTransform: "none", fontWeight: 600, fontFamily: DS.fonts.body, fontSize: "0.92rem", px: 3.5, py: 1, minWidth: 180, height: 48, borderRadius: DS.radii.lg, boxShadow: DS.shadows.lg, transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)", "&:hover": { bgcolor: DS.colors.bg, boxShadow: "0 12px 32px rgba(0,0,0,0.15)", transform: "translateY(-2px)" } }}>
               Get Your Free Quote
             </Button>
           </Stack>

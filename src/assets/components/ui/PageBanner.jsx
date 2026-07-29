@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import DS from "../../../theme/designSystem";
 
@@ -34,8 +35,8 @@ const PageBanner = ({ title, breadcrumbs, py }) => {
               )}
               {crumb.href ? (
                 <Typography
-                  component="a"
-                  href={crumb.href}
+                  component={Link}
+                  to={crumb.href}
                   sx={{
                     ...DS.typography.body,
                     color: DS.colors.sub,

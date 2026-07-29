@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   Box, Typography, Container, Grid, Card, Divider, Stack, Button, Avatar,
 } from "@mui/material";
@@ -60,6 +61,7 @@ const blogPosts = [
 ];
 
 const Blog = () => {
+  const navigate = useNavigate();
   const [activePost, setActivePost] = useState("telemetry");
   const selectedPost = blogPosts.find((p) => p.id === activePost) || blogPosts[0];
 
@@ -122,7 +124,7 @@ const Blog = () => {
                     ))}
                   </Stack>
 
-                  <Button variant="contained" disableElevation endIcon={<DynamicFeedRoundedIcon sx={{ fontSize: 16 }} />} sx={{ ...DS.button.primary, px: 3.5, py: 1.1 }}>
+                  <Button variant="contained" disableElevation endIcon={<DynamicFeedRoundedIcon sx={{ fontSize: 16 }} />} onClick={() => navigate("/contact")} sx={{ ...DS.button.primary, px: 3.5, py: 1.1 }}>
                     Read Full Documentation
                   </Button>
                 </Grid>
