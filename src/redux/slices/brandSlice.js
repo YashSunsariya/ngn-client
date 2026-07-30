@@ -1,47 +1,53 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import api from '../../lib/api'
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { brandService } from "../../services/brandService";
 
 export const fetchBrands = createAsyncThunk(
-  'brands/fetchBrands',
+  "brands/fetchBrands",
   async (_, { rejectWithValue }) => {
     try {
-      const { data } = await api.get('/public/brands')
-      return data.data || data.brands || data || []
+      const result = await brandService.fetchBrands();
+      return result;
     } catch (err) {
-      return rejectWithValue(err.response?.data?.message || 'Failed to fetch brands')
+      return rejectWithValue(
+        err.response?.data?.message || "Failed to fetch brands"
+      );
     }
   }
-)
+);
 
 const brandSlice = createSlice({
-  name: 'brands',
+  name: "brands",
   initialState: {
     items: [],
     loading: false,
     error: null,
+    success: false,
   },
   reducers: {
     clearBrands(state) {
-      state.items = []
-      state.error = null
+      state.items = [];
+      state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchBrands.pending, (state) => {
-        state.loading = true
-        state.error = null
+        state.loading = true;
+        state.error = null;
+        state.success = false;
       })
       .addCase(fetchBrands.fulfilled, (state, action) => {
-        state.loading = false
-        state.items = action.payload
+        state.loading = false;
+        state.success = true;
+        state.items = action.payload;
       })
       .addCase(fetchBrands.rejected, (state, action) => {
-        state.loading = false
-        state.error = action.payload
-      })
+        state.loading = false;
+        state.error = action.payload;
+        state.success = false;
+      });
   },
-})
+});
 
-export const { clearBrands } = brandSlice.actions
-export default brandSlice.reducer
+export const { clearBrands } = brandSlice.actions;
+export default brandSlice.reducer;
