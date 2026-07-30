@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')).render(
     <Provider store={store}>
       <BrowserRouter>
         <App />
-        <Toaster position="center" toastOptions={{ duration: 3000 }} />
+        <Toaster position="top-center" toastOptions={{ duration: 3000 }} />
       </BrowserRouter>
     </Provider>
   </StrictMode>,
