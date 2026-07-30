@@ -56,7 +56,7 @@ export default function TopBar() {
             {/* Real tel:/mailto: links instead of static text */}
             <Box
               component="a"
-              href="tel:+919876543210"
+              href="tel:+919399484682"
               sx={{
                 display: "flex",
                 alignItems: "center",
@@ -68,7 +68,7 @@ export default function TopBar() {
               }}
             >
               <PhoneIcon aria-hidden="true" sx={{ fontSize: 16 }} />
-              <Typography sx={{ fontSize: 13 }}>+91 98765 43210</Typography>
+              <Typography sx={{ fontSize: 13 }}>+91 93994 84682</Typography>
             </Box>
             <Box
               component="a"
