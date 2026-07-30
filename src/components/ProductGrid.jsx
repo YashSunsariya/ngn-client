@@ -37,6 +37,7 @@ const ProductGrid = React.memo(({
   loading,
   wishlistItems,
   isAuthenticated,
+  cartLoadingId,
   onToggleWishlist,
   onAddToCart,
   onBuyNow,
@@ -53,6 +54,7 @@ const ProductGrid = React.memo(({
             product={product}
             wishlistItems={wishlistItems}
             isAuthenticated={isAuthenticated}
+            cartLoadingId={cartLoadingId}
             onToggleWishlist={onToggleWishlist}
             onAddToCart={onAddToCart}
             onBuyNow={onBuyNow}
