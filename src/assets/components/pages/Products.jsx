@@ -361,7 +361,7 @@ const Products = () => {
                     const discountLabel = getDiscountLabel(product);
                     const displayPrice =
                       product.discountPrice &&
-                      product.discountPrice < product.price
+                        product.discountPrice < product.price
                         ? product.discountPrice
                         : product.price;
 
@@ -458,20 +458,21 @@ const Products = () => {
                               display: "flex",
                               justifyContent: "center",
                               alignItems: "center",
-                              height: 200,
+                              height: 250,
                               bgcolor: "#FAFBFC",
+                              overflow: "hidden",
                             }}
                           >
                             <Box
                               component="img"
-                              src={product.images?.[0] || ""}
+                              src={product.images?.[0] || "/placeholder.png"}
                               alt={product.productName}
                               sx={{
-                                width: "300px",
-                                height: "500px",
-                                
-                                transition: "transform 0.3s ease",
-                                ".MuiCard-root:hover &": {
+                                width: 180,
+                                height: 180,
+                                objectFit: "contain",
+                                transition: "0.3s",
+                                "&:hover": {
                                   transform: "scale(1.05)",
                                 },
                               }}
