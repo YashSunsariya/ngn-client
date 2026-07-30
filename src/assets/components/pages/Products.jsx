@@ -1,6 +1,7 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Box, Container } from "@mui/material";
 import { fetchProducts } from "../../../redux/slices/productSlice";
 import { fetchCategories } from "../../../redux/slices/categorySlice";
@@ -109,18 +110,28 @@ const Products = () => {
   );
 
   const handleAddToCart = useCallback(
-    (product) => {
+    async (product) => {
       if (!isAuthenticated) return navigate("/login");
-      dispatch(addToCart({ productId: product._id }));
+      const result = await dispatch(addToCart({ productId: product._id }));
+      if (result.meta?.requestStatus === "fulfilled") {
+        toast.success("Item added to cart");
+      } else {
+        toast.error(result.payload || "Failed to add to cart");
+      }
     },
     [dispatch, isAuthenticated, navigate]
   );
 
   const handleBuyNow = useCallback(
-    (product) => {
+    async (product) => {
       if (!isAuthenticated) return navigate("/login");
-      dispatch(addToCart({ productId: product._id }));
-      navigate("/checkout");
+      const result = await dispatch(addToCart({ productId: product._id }));
+      if (result.meta?.requestStatus === "fulfilled") {
+        toast.success("Item added to cart");
+        navigate("/checkout");
+      } else {
+        toast.error(result.payload || "Failed to add to cart");
+      }
     },
     [dispatch, isAuthenticated, navigate]
   );
