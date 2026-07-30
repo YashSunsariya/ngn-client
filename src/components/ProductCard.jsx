@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
-  Box, Typography, Button, Stack, Card, Chip, IconButton, CircularProgress,
+  Box, Typography, Button, Stack, Card, Chip, IconButton,
 } from "@mui/material";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -15,13 +15,11 @@ const ProductCard = React.memo(({
   product,
   wishlistItems = [],
   isAuthenticated,
-  cartLoadingId,
   onToggleWishlist,
   onAddToCart,
   onBuyNow,
   onClick,
 }) => {
-  const isLoading = cartLoadingId === product._id;
   const navigate = useNavigate();
   const discountLabel = getDiscountLabel(product);
   const displayPrice = getDisplayPrice(product);
@@ -248,7 +246,6 @@ const ProductCard = React.memo(({
             fullWidth
             variant="outlined"
             onClick={handleAddToCart}
-            disabled={isLoading}
             sx={{
               color: COLORS.primary,
               borderColor: COLORS.primary,
@@ -262,20 +259,15 @@ const ProductCard = React.memo(({
                 bgcolor: "rgba(21,115,71,0.06)",
                 borderColor: COLORS.primaryHover,
               },
-              "&.Mui-disabled": {
-                borderColor: COLORS.border,
-                color: COLORS.muted,
-              },
             }}
           >
-            {isLoading ? <CircularProgress size={18} sx={{ color: COLORS.primary }} /> : "Add to Cart"}
+            Add to Cart
           </Button>
           <Button
             fullWidth
             variant="contained"
             disableElevation
             onClick={handleBuyNow}
-            disabled={isLoading}
             sx={{
               bgcolor: COLORS.primary,
               color: "#FFF",
@@ -289,13 +281,9 @@ const ProductCard = React.memo(({
                 bgcolor: COLORS.primaryHover,
                 boxShadow: "0 4px 12px rgba(21,115,71,0.25)",
               },
-              "&.Mui-disabled": {
-                bgcolor: COLORS.inputBorder,
-                color: COLORS.muted,
-              },
             }}
           >
-            {isLoading ? <CircularProgress size={18} sx={{ color: "#FFF" }} /> : "Buy Now"}
+            Buy Now
           </Button>
         </Stack>
       </Box>

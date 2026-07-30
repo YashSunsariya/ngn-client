@@ -33,7 +33,6 @@ const Products = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [priceRange, setPriceRange] = useState([PRICE_MIN, PRICE_MAX]);
   const [searchQuery, setSearchQuery] = useState("");
-  const [cartLoadingId, setCartLoadingId] = useState(null);
 
   const fetchParams = useMemo(
     () => {
@@ -113,9 +112,7 @@ const Products = () => {
   const handleAddToCart = useCallback(
     async (product) => {
       if (!isAuthenticated) return navigate("/login");
-      setCartLoadingId(product._id);
       const result = await dispatch(addToCart({ productId: product._id }));
-      setCartLoadingId(null);
       if (result.meta?.requestStatus === "fulfilled") {
         toast.success("Item added to cart");
       } else {
@@ -128,9 +125,7 @@ const Products = () => {
   const handleBuyNow = useCallback(
     async (product) => {
       if (!isAuthenticated) return navigate("/login");
-      setCartLoadingId(product._id);
       const result = await dispatch(addToCart({ productId: product._id }));
-      setCartLoadingId(null);
       if (result.meta?.requestStatus === "fulfilled") {
         toast.success("Item added to cart");
         navigate("/checkout");
@@ -189,7 +184,6 @@ const Products = () => {
               loading={loading}
               wishlistItems={wishlistItems}
               isAuthenticated={isAuthenticated}
-              cartLoadingId={cartLoadingId}
               onToggleWishlist={handleToggleWishlist}
               onAddToCart={handleAddToCart}
               onBuyNow={handleBuyNow}
